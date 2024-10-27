@@ -1,0 +1,123 @@
+/* CSS FILE USED FOR THE HOME PAGE (index.html) */
+
+#intro-section {
+    display: grid;
+    /* First columns stretches and shrinks with the room given by the grid container, second column's width depends on it's contents */
+    grid-template-columns: 1fr auto;
+    /* Vertically align the contents of the grid children to the bottom */
+    align-items: end;
+    padding-top: 5rem;
+    box-sizing: border-box;
+    padding-left: var(--body-side-padding);
+}
+
+/* Text section next to Dick Schoof containing a quote from him */
+#intro-section__text {
+    padding-bottom: 1.5rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+#intro-section__text > blockquote {
+    padding-top: 3rem;
+    text-align: center;
+    /* Tries to balance wrapping text by making it so each line has around the same amount of characters */
+    text-wrap: balance;
+}
+
+#intro-section__text__quoted-person {
+    text-align: right;
+}
+
+#intro-section__img {
+    /* For some reason, this aligns the image perfectly to the bottom, compared to when this is not declared.. */
+    display: grid;
+    /* Horizontally align to the right */
+    justify-self: end;
+}
+
+/* Picture of Dick Schoof to the right */
+#intro-section__img > img {
+    /* Width of the image is 100% of the parent, whose width is defined by the grid container (#intro-section) */
+    width: auto;
+    max-height: 25rem;
+}
+
+/* Navigation cards */
+#home-nav-cards {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px var(--body-side-padding);
+    background-color: var(--secondary-color-light);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.home-nav-cards__card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-right: 16px;
+    padding-left: 8px;
+}
+
+/* Little icons on the side of each card */
+.home-nav-cards__card > aside > img {
+    width: 32px;
+    height: auto;
+    /* Codepen for finding the right filter combination to make a black png turn into a target color:
+    https://codepen.io/sosuke/pen/Pjoqqp
+
+    Thanks Stackoverflow!
+    https://stackoverflow.com/questions/7415872/change-color-of-png-image-via-css 
+    
+    Target color: --accent-color: #F18F01;
+    */
+    filter: invert(72%) sepia(76%) saturate(3897%) hue-rotate(2deg) brightness(97%) contrast(100%);
+}
+
+/* Text in the cards */
+.home-nav-cards__card__body {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    /* Align content in the rows to the top */
+    align-items: start;
+    gap: 0.5em;
+}
+
+.home-nav-cards__card__body > a.button {
+    /* Align itself to the bottom of the grid row */
+    align-self: end;
+    /* Align itself to the right in the grid row */
+    justify-self: end;
+}
+
+@media only screen and (max-width: 1280px) {
+    #home-nav-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* Mobile display */
+@media only screen and (max-width: 768px) {
+    #intro-section {
+        grid-template-columns: auto;
+        padding-top: var(--body-side-padding);
+        padding-right: var(--body-side-padding);
+    }
+
+    #intro-section__img > img {
+        max-width: 90%;
+    }
+
+    /* Nav cards section changes from four columns to one column wide */
+    #home-nav-cards {
+        grid-template-columns: 1fr;
+    }
+}
